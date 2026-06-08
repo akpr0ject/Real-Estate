@@ -30,40 +30,140 @@ function HomePage() {
 
       {/* HERO */}
       <section className="relative overflow-hidden">
+        {/* Decorative background — warm cream with ember glow + grid */}
         <div className="absolute inset-0 -z-10">
-          <img src={heroImg} alt="" className="h-full w-full object-cover opacity-50" width={1920} height={1080} />
-          <div className="absolute inset-0 bg-gradient-to-b from-background/60 via-background/70 to-background" />
+          <div
+            className="absolute inset-0 opacity-[0.35]"
+            style={{
+              backgroundImage:
+                "linear-gradient(to right, oklch(0.25 0.02 50 / 0.06) 1px, transparent 1px), linear-gradient(to bottom, oklch(0.25 0.02 50 / 0.06) 1px, transparent 1px)",
+              backgroundSize: "44px 44px",
+              maskImage:
+                "radial-gradient(ellipse 80% 60% at 30% 30%, black 30%, transparent 75%)",
+            }}
+          />
+          <div className="absolute -left-40 top-10 size-[520px] rounded-full bg-ember/25 blur-[120px]" />
+          <div className="absolute -right-20 top-40 size-[420px] rounded-full bg-ember-soft/40 blur-[120px]" />
         </div>
-        <div className="container-page grid gap-12 pb-12 pt-20 md:pt-28">
-          <div className="max-w-3xl">
+
+        <div className="container-page pb-12 pt-16 md:pt-24">
+          <div className="grid items-center gap-10 lg:grid-cols-[1.05fr_1fr]">
+            {/* LEFT — copy */}
+            <div className="max-w-2xl">
+              <motion.div
+                initial={{ opacity: 0, y: 12 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5 }}
+                className="inline-flex items-center gap-2 rounded-full border border-border bg-card/80 px-3 py-1 text-xs text-muted-foreground backdrop-blur"
+              >
+                <Sparkles className="size-3 text-ember" /> India's most considered property marketplace
+              </motion.div>
+              <motion.h1
+                initial={{ opacity: 0, y: 16 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.1, duration: 0.6 }}
+                className="mt-6 font-display text-5xl font-semibold leading-[1.02] tracking-tight text-balance md:text-7xl"
+              >
+                Find a home worth{" "}
+                <span className="relative inline-block">
+                  <span className="relative z-10 bg-gradient-to-br from-[oklch(0.62_0.2_40)] to-[oklch(0.5_0.22_28)] bg-clip-text text-transparent">
+                    coming home to.
+                  </span>
+                  <span className="absolute -bottom-1 left-0 right-0 h-3 -skew-x-6 rounded-sm bg-ember/15" />
+                </span>
+              </motion.h1>
+              <motion.p
+                initial={{ opacity: 0, y: 16 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.18, duration: 0.6 }}
+                className="mt-5 max-w-xl text-base text-muted-foreground md:text-lg"
+              >
+                A curated marketplace of verified residences, commercial floors and ground-up new
+                projects — with the tools agents and developers need to close, in one place.
+              </motion.p>
+
+              {/* Trust strip */}
+              <motion.div
+                initial={{ opacity: 0, y: 12 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.28, duration: 0.5 }}
+                className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3 text-xs text-muted-foreground"
+              >
+                <span className="inline-flex items-center gap-1.5">
+                  <ShieldCheck className="size-3.5 text-ember" /> RERA verified listings
+                </span>
+                <span className="inline-flex items-center gap-1.5">
+                  <BadgeCheck className="size-3.5 text-ember" /> 48K background-checked agents
+                </span>
+                <span className="inline-flex items-center gap-1.5">
+                  <Star className="size-3.5 fill-ember text-ember" /> 4.8 on Trustpilot
+                </span>
+              </motion.div>
+            </div>
+
+            {/* RIGHT — image collage */}
             <motion.div
-              initial={{ opacity: 0, y: 12 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-              className="inline-flex items-center gap-2 rounded-full border border-border bg-card/60 px-3 py-1 text-xs text-muted-foreground backdrop-blur"
+              initial={{ opacity: 0, scale: 0.96 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.7, delay: 0.15 }}
+              className="relative hidden lg:block"
             >
-              <Sparkles className="size-3 text-ember" /> India's most considered property marketplace
+              <div className="relative aspect-[4/5] w-full overflow-hidden rounded-[2rem] border border-border shadow-elegant">
+                <img
+                  src={heroImg}
+                  alt="Modern residence with warm interior light"
+                  className="h-full w-full object-cover"
+                  width={1200}
+                  height={1500}
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-[oklch(0.2_0.03_40)]/60 via-transparent to-transparent" />
+                <div className="absolute left-5 top-5 rounded-2xl bg-card/95 px-3 py-2 shadow-elegant backdrop-blur">
+                  <div className="text-[10px] uppercase tracking-widest text-muted-foreground">Featured</div>
+                  <div className="font-display text-sm font-semibold">Bandra Sea Villa</div>
+                  <div className="text-xs text-ember">₹ 8.4 Cr · 4 BHK</div>
+                </div>
+                <div className="absolute bottom-5 right-5 inline-flex items-center gap-1.5 rounded-full bg-background/95 px-3 py-1.5 text-xs shadow-elegant backdrop-blur">
+                  <BadgeCheck className="size-3.5 text-ember" /> RERA Verified
+                </div>
+              </div>
+              <motion.div
+                animate={{ y: [0, -10, 0] }}
+                transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+                className="absolute -left-6 bottom-10 rounded-2xl border border-border bg-card p-4 shadow-elegant"
+              >
+                <div className="flex items-center gap-3">
+                  <div className="grid size-10 place-items-center rounded-xl ember-gradient">
+                    <TrendingUp className="size-5 text-primary-foreground" />
+                  </div>
+                  <div>
+                    <div className="font-display text-lg font-semibold leading-none">+18.4%</div>
+                    <div className="mt-1 text-[11px] text-muted-foreground">YoY appreciation</div>
+                  </div>
+                </div>
+              </motion.div>
+              <motion.div
+                animate={{ y: [0, 8, 0] }}
+                transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+                className="absolute -right-4 top-16 rounded-2xl border border-border bg-card p-3 shadow-elegant"
+              >
+                <div className="flex items-center gap-2">
+                  <Users className="size-4 text-ember" />
+                  <div className="text-xs">
+                    <span className="font-semibold">1,284</span>{" "}
+                    <span className="text-muted-foreground">viewing now</span>
+                  </div>
+                </div>
+              </motion.div>
             </motion.div>
-            <motion.h1
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.1, duration: 0.6 }}
-              className="mt-6 font-display text-5xl font-semibold tracking-tight text-balance md:text-7xl"
-            >
-              Find a home worth <span className="text-ember">coming home to.</span>
-            </motion.h1>
-            <motion.p
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.18, duration: 0.6 }}
-              className="mt-5 max-w-xl text-base text-muted-foreground md:text-lg"
-            >
-              A curated marketplace of verified residences, commercial floors and ground-up new
-              projects — with the tools agents and developers need to close, in one place.
-            </motion.p>
           </div>
-          <SearchHero />
-          <div className="grid grid-cols-2 gap-4 md:grid-cols-4">
+
+          {/* SEARCH */}
+          <div className="mt-12">
+            <SearchHero />
+          </div>
+
+          {/* STATS */}
+          <div className="mt-8 grid grid-cols-2 gap-4 md:grid-cols-4">
             {[
               { k: "1.2M+", v: "Active listings" },
               { k: "48K", v: "Verified agents" },
@@ -75,7 +175,7 @@ function HomePage() {
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.3 + i * 0.05 }}
-                className="rounded-2xl border border-border bg-card/60 p-4 backdrop-blur"
+                className="rounded-2xl border border-border bg-card/80 p-4 backdrop-blur"
               >
                 <div className="font-display text-2xl font-semibold tracking-tight">{s.k}</div>
                 <div className="text-xs text-muted-foreground">{s.v}</div>
