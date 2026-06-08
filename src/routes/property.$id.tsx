@@ -33,7 +33,7 @@ export const Route = createFileRoute("/property/$id")({
 });
 
 function PropertyDetail() {
-  const { property: p } = Route.useLoaderData();
+  const { property: p } = Route.useLoaderData() as { property: typeof properties[number] };
   const [emi, setEmi] = useState(8.5);
   const [years, setYears] = useState(20);
   const principal = p.price * 0.8;
