@@ -12,14 +12,24 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as RentRouteImport } from './routes/rent'
 import { Route as ProjectsRouteImport } from './routes/projects'
 import { Route as LoginRouteImport } from './routes/login'
+import { Route as DistributorRouteImport } from './routes/distributor'
+import { Route as DashboardRouteImport } from './routes/dashboard'
+import { Route as CrmRouteImport } from './routes/crm'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as CommercialRouteImport } from './routes/commercial'
 import { Route as BuyRouteImport } from './routes/buy'
 import { Route as BuildersRouteImport } from './routes/builders'
 import { Route as BlogRouteImport } from './routes/blog'
 import { Route as AgentsRouteImport } from './routes/agents'
+import { Route as AgentRouteImport } from './routes/agent'
+import { Route as AdminRouteImport } from './routes/admin'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as PropertyIdRouteImport } from './routes/property.$id'
+import { Route as DistributorSplatRouteImport } from './routes/distributor.$'
+import { Route as DashboardSplatRouteImport } from './routes/dashboard.$'
+import { Route as CrmSplatRouteImport } from './routes/crm.$'
+import { Route as AgentSplatRouteImport } from './routes/agent.$'
+import { Route as AdminSplatRouteImport } from './routes/admin.$'
 
 const RentRoute = RentRouteImport.update({
   id: '/rent',
@@ -34,6 +44,21 @@ const ProjectsRoute = ProjectsRouteImport.update({
 const LoginRoute = LoginRouteImport.update({
   id: '/login',
   path: '/login',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DistributorRoute = DistributorRouteImport.update({
+  id: '/distributor',
+  path: '/distributor',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DashboardRoute = DashboardRouteImport.update({
+  id: '/dashboard',
+  path: '/dashboard',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CrmRoute = CrmRouteImport.update({
+  id: '/crm',
+  path: '/crm',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ContactRoute = ContactRouteImport.update({
@@ -66,6 +91,16 @@ const AgentsRoute = AgentsRouteImport.update({
   path: '/agents',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AgentRoute = AgentRouteImport.update({
+  id: '/agent',
+  path: '/agent',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminRoute = AdminRouteImport.update({
+  id: '/admin',
+  path: '/admin',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
@@ -76,97 +111,187 @@ const PropertyIdRoute = PropertyIdRouteImport.update({
   path: '/property/$id',
   getParentRoute: () => rootRouteImport,
 } as any)
+const DistributorSplatRoute = DistributorSplatRouteImport.update({
+  id: '/$',
+  path: '/$',
+  getParentRoute: () => DistributorRoute,
+} as any)
+const DashboardSplatRoute = DashboardSplatRouteImport.update({
+  id: '/$',
+  path: '/$',
+  getParentRoute: () => DashboardRoute,
+} as any)
+const CrmSplatRoute = CrmSplatRouteImport.update({
+  id: '/$',
+  path: '/$',
+  getParentRoute: () => CrmRoute,
+} as any)
+const AgentSplatRoute = AgentSplatRouteImport.update({
+  id: '/$',
+  path: '/$',
+  getParentRoute: () => AgentRoute,
+} as any)
+const AdminSplatRoute = AdminSplatRouteImport.update({
+  id: '/$',
+  path: '/$',
+  getParentRoute: () => AdminRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/admin': typeof AdminRouteWithChildren
+  '/agent': typeof AgentRouteWithChildren
   '/agents': typeof AgentsRoute
   '/blog': typeof BlogRoute
   '/builders': typeof BuildersRoute
   '/buy': typeof BuyRoute
   '/commercial': typeof CommercialRoute
   '/contact': typeof ContactRoute
+  '/crm': typeof CrmRouteWithChildren
+  '/dashboard': typeof DashboardRouteWithChildren
+  '/distributor': typeof DistributorRouteWithChildren
   '/login': typeof LoginRoute
   '/projects': typeof ProjectsRoute
   '/rent': typeof RentRoute
+  '/admin/$': typeof AdminSplatRoute
+  '/agent/$': typeof AgentSplatRoute
+  '/crm/$': typeof CrmSplatRoute
+  '/dashboard/$': typeof DashboardSplatRoute
+  '/distributor/$': typeof DistributorSplatRoute
   '/property/$id': typeof PropertyIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/admin': typeof AdminRouteWithChildren
+  '/agent': typeof AgentRouteWithChildren
   '/agents': typeof AgentsRoute
   '/blog': typeof BlogRoute
   '/builders': typeof BuildersRoute
   '/buy': typeof BuyRoute
   '/commercial': typeof CommercialRoute
   '/contact': typeof ContactRoute
+  '/crm': typeof CrmRouteWithChildren
+  '/dashboard': typeof DashboardRouteWithChildren
+  '/distributor': typeof DistributorRouteWithChildren
   '/login': typeof LoginRoute
   '/projects': typeof ProjectsRoute
   '/rent': typeof RentRoute
+  '/admin/$': typeof AdminSplatRoute
+  '/agent/$': typeof AgentSplatRoute
+  '/crm/$': typeof CrmSplatRoute
+  '/dashboard/$': typeof DashboardSplatRoute
+  '/distributor/$': typeof DistributorSplatRoute
   '/property/$id': typeof PropertyIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/admin': typeof AdminRouteWithChildren
+  '/agent': typeof AgentRouteWithChildren
   '/agents': typeof AgentsRoute
   '/blog': typeof BlogRoute
   '/builders': typeof BuildersRoute
   '/buy': typeof BuyRoute
   '/commercial': typeof CommercialRoute
   '/contact': typeof ContactRoute
+  '/crm': typeof CrmRouteWithChildren
+  '/dashboard': typeof DashboardRouteWithChildren
+  '/distributor': typeof DistributorRouteWithChildren
   '/login': typeof LoginRoute
   '/projects': typeof ProjectsRoute
   '/rent': typeof RentRoute
+  '/admin/$': typeof AdminSplatRoute
+  '/agent/$': typeof AgentSplatRoute
+  '/crm/$': typeof CrmSplatRoute
+  '/dashboard/$': typeof DashboardSplatRoute
+  '/distributor/$': typeof DistributorSplatRoute
   '/property/$id': typeof PropertyIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/admin'
+    | '/agent'
     | '/agents'
     | '/blog'
     | '/builders'
     | '/buy'
     | '/commercial'
     | '/contact'
+    | '/crm'
+    | '/dashboard'
+    | '/distributor'
     | '/login'
     | '/projects'
     | '/rent'
+    | '/admin/$'
+    | '/agent/$'
+    | '/crm/$'
+    | '/dashboard/$'
+    | '/distributor/$'
     | '/property/$id'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/admin'
+    | '/agent'
     | '/agents'
     | '/blog'
     | '/builders'
     | '/buy'
     | '/commercial'
     | '/contact'
+    | '/crm'
+    | '/dashboard'
+    | '/distributor'
     | '/login'
     | '/projects'
     | '/rent'
+    | '/admin/$'
+    | '/agent/$'
+    | '/crm/$'
+    | '/dashboard/$'
+    | '/distributor/$'
     | '/property/$id'
   id:
     | '__root__'
     | '/'
+    | '/admin'
+    | '/agent'
     | '/agents'
     | '/blog'
     | '/builders'
     | '/buy'
     | '/commercial'
     | '/contact'
+    | '/crm'
+    | '/dashboard'
+    | '/distributor'
     | '/login'
     | '/projects'
     | '/rent'
+    | '/admin/$'
+    | '/agent/$'
+    | '/crm/$'
+    | '/dashboard/$'
+    | '/distributor/$'
     | '/property/$id'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AdminRoute: typeof AdminRouteWithChildren
+  AgentRoute: typeof AgentRouteWithChildren
   AgentsRoute: typeof AgentsRoute
   BlogRoute: typeof BlogRoute
   BuildersRoute: typeof BuildersRoute
   BuyRoute: typeof BuyRoute
   CommercialRoute: typeof CommercialRoute
   ContactRoute: typeof ContactRoute
+  CrmRoute: typeof CrmRouteWithChildren
+  DashboardRoute: typeof DashboardRouteWithChildren
+  DistributorRoute: typeof DistributorRouteWithChildren
   LoginRoute: typeof LoginRoute
   ProjectsRoute: typeof ProjectsRoute
   RentRoute: typeof RentRoute
@@ -194,6 +319,27 @@ declare module '@tanstack/react-router' {
       path: '/login'
       fullPath: '/login'
       preLoaderRoute: typeof LoginRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/distributor': {
+      id: '/distributor'
+      path: '/distributor'
+      fullPath: '/distributor'
+      preLoaderRoute: typeof DistributorRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/dashboard': {
+      id: '/dashboard'
+      path: '/dashboard'
+      fullPath: '/dashboard'
+      preLoaderRoute: typeof DashboardRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/crm': {
+      id: '/crm'
+      path: '/crm'
+      fullPath: '/crm'
+      preLoaderRoute: typeof CrmRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/contact': {
@@ -238,6 +384,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AgentsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/agent': {
+      id: '/agent'
+      path: '/agent'
+      fullPath: '/agent'
+      preLoaderRoute: typeof AgentRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin': {
+      id: '/admin'
+      path: '/admin'
+      fullPath: '/admin'
+      preLoaderRoute: typeof AdminRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -252,17 +412,111 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PropertyIdRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/distributor/$': {
+      id: '/distributor/$'
+      path: '/$'
+      fullPath: '/distributor/$'
+      preLoaderRoute: typeof DistributorSplatRouteImport
+      parentRoute: typeof DistributorRoute
+    }
+    '/dashboard/$': {
+      id: '/dashboard/$'
+      path: '/$'
+      fullPath: '/dashboard/$'
+      preLoaderRoute: typeof DashboardSplatRouteImport
+      parentRoute: typeof DashboardRoute
+    }
+    '/crm/$': {
+      id: '/crm/$'
+      path: '/$'
+      fullPath: '/crm/$'
+      preLoaderRoute: typeof CrmSplatRouteImport
+      parentRoute: typeof CrmRoute
+    }
+    '/agent/$': {
+      id: '/agent/$'
+      path: '/$'
+      fullPath: '/agent/$'
+      preLoaderRoute: typeof AgentSplatRouteImport
+      parentRoute: typeof AgentRoute
+    }
+    '/admin/$': {
+      id: '/admin/$'
+      path: '/$'
+      fullPath: '/admin/$'
+      preLoaderRoute: typeof AdminSplatRouteImport
+      parentRoute: typeof AdminRoute
+    }
   }
 }
 
+interface AdminRouteChildren {
+  AdminSplatRoute: typeof AdminSplatRoute
+}
+
+const AdminRouteChildren: AdminRouteChildren = {
+  AdminSplatRoute: AdminSplatRoute,
+}
+
+const AdminRouteWithChildren = AdminRoute._addFileChildren(AdminRouteChildren)
+
+interface AgentRouteChildren {
+  AgentSplatRoute: typeof AgentSplatRoute
+}
+
+const AgentRouteChildren: AgentRouteChildren = {
+  AgentSplatRoute: AgentSplatRoute,
+}
+
+const AgentRouteWithChildren = AgentRoute._addFileChildren(AgentRouteChildren)
+
+interface CrmRouteChildren {
+  CrmSplatRoute: typeof CrmSplatRoute
+}
+
+const CrmRouteChildren: CrmRouteChildren = {
+  CrmSplatRoute: CrmSplatRoute,
+}
+
+const CrmRouteWithChildren = CrmRoute._addFileChildren(CrmRouteChildren)
+
+interface DashboardRouteChildren {
+  DashboardSplatRoute: typeof DashboardSplatRoute
+}
+
+const DashboardRouteChildren: DashboardRouteChildren = {
+  DashboardSplatRoute: DashboardSplatRoute,
+}
+
+const DashboardRouteWithChildren = DashboardRoute._addFileChildren(
+  DashboardRouteChildren,
+)
+
+interface DistributorRouteChildren {
+  DistributorSplatRoute: typeof DistributorSplatRoute
+}
+
+const DistributorRouteChildren: DistributorRouteChildren = {
+  DistributorSplatRoute: DistributorSplatRoute,
+}
+
+const DistributorRouteWithChildren = DistributorRoute._addFileChildren(
+  DistributorRouteChildren,
+)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AdminRoute: AdminRouteWithChildren,
+  AgentRoute: AgentRouteWithChildren,
   AgentsRoute: AgentsRoute,
   BlogRoute: BlogRoute,
   BuildersRoute: BuildersRoute,
   BuyRoute: BuyRoute,
   CommercialRoute: CommercialRoute,
   ContactRoute: ContactRoute,
+  CrmRoute: CrmRouteWithChildren,
+  DashboardRoute: DashboardRouteWithChildren,
+  DistributorRoute: DistributorRouteWithChildren,
   LoginRoute: LoginRoute,
   ProjectsRoute: ProjectsRoute,
   RentRoute: RentRoute,
@@ -271,3 +525,13 @@ const rootRouteChildren: RootRouteChildren = {
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}
