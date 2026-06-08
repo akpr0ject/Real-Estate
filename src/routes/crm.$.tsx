@@ -1,7 +1,9 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Route as CrmRoute } from "./crm";
 
+const Comp = CrmRoute.options.component!;
+
 export const Route = createFileRoute("/crm/$")({
-  head: CrmRoute.options.head,
-  component: CrmRoute.options.component!,
+  head: () => ({ meta: [{ title: "CRM — Estate" }] }),
+  component: Comp,
 });

@@ -1,7 +1,9 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Route as DashRoute } from "./dashboard";
 
+const Comp = DashRoute.options.component!;
+
 export const Route = createFileRoute("/dashboard/$")({
-  head: DashRoute.options.head,
-  component: DashRoute.options.component!,
+  head: () => ({ meta: [{ title: "Your dashboard — Estate" }] }),
+  component: Comp,
 });
