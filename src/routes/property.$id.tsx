@@ -56,7 +56,7 @@ function PropertyDetail() {
             </button>
           </div>
           <div className="grid grid-rows-2 gap-3">
-            {(p.gallery ?? [p.image, p.image]).slice(0, 2).map((g, i) => (
+            {(p.gallery ?? [p.image, p.image]).slice(0, 2).map((g: string, i: number) => (
               <img key={i} src={g} alt="" className="h-full w-full rounded-2xl border border-border object-cover" />
             ))}
           </div>
@@ -92,7 +92,7 @@ function PropertyDetail() {
 
             <Section title="Amenities">
               <div className="flex flex-wrap gap-2">
-                {p.amenities.map((a) => (
+                {p.amenities.map((a: string) => (
                   <span key={a} className="rounded-full border border-border bg-card px-3 py-1.5 text-xs">{a}</span>
                 ))}
               </div>
