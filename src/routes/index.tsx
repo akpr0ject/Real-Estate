@@ -6,7 +6,7 @@ import { SiteFooter } from "@/components/site/SiteFooter";
 import { SearchHero } from "@/components/property/SearchHero";
 import { PropertyCard } from "@/components/property/PropertyCard";
 import { properties, builders, agents } from "@/lib/mock-data";
-import heroImg from "@/assets/hero-estate.jpg";
+
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -30,9 +30,50 @@ function HomePage() {
 
       {/* HERO */}
       <section className="relative overflow-hidden">
-        <div className="absolute inset-0 -z-10">
-          <img src={heroImg} alt="" className="h-full w-full object-cover opacity-50" width={1920} height={1080} />
-          <div className="absolute inset-0 bg-gradient-to-b from-background/60 via-background/70 to-background" />
+        <div className="absolute inset-0 -z-10 overflow-hidden">
+          {/* Animated gradient mesh background */}
+          <div className="absolute inset-0 hero-anim-bg" />
+          {/* Drifting orbs */}
+          <motion.div
+            aria-hidden
+            className="absolute -top-32 -left-20 size-[42rem] rounded-full bg-ember/25 blur-3xl"
+            animate={{ x: [0, 80, -40, 0], y: [0, 60, -30, 0], scale: [1, 1.15, 0.95, 1] }}
+            transition={{ duration: 18, repeat: Infinity, ease: "easeInOut" }}
+          />
+          <motion.div
+            aria-hidden
+            className="absolute top-1/3 -right-32 size-[36rem] rounded-full bg-amber-500/15 blur-3xl"
+            animate={{ x: [0, -60, 40, 0], y: [0, -40, 50, 0], scale: [1, 0.9, 1.1, 1] }}
+            transition={{ duration: 22, repeat: Infinity, ease: "easeInOut" }}
+          />
+          <motion.div
+            aria-hidden
+            className="absolute bottom-0 left-1/3 size-[30rem] rounded-full bg-orange-600/15 blur-3xl"
+            animate={{ x: [0, 40, -60, 0], y: [0, 30, -20, 0] }}
+            transition={{ duration: 26, repeat: Infinity, ease: "easeInOut" }}
+          />
+          {/* Subtle grid */}
+          <div
+            className="absolute inset-0 opacity-[0.07]"
+            style={{
+              backgroundImage:
+                "linear-gradient(to right, currentColor 1px, transparent 1px), linear-gradient(to bottom, currentColor 1px, transparent 1px)",
+              backgroundSize: "64px 64px",
+              maskImage: "radial-gradient(ellipse at center, black 40%, transparent 75%)",
+            }}
+          />
+          {/* Floating particles */}
+          {[...Array(14)].map((_, i) => (
+            <motion.span
+              key={i}
+              aria-hidden
+              className="absolute size-1 rounded-full bg-ember/60"
+              style={{ left: `${(i * 73) % 100}%`, top: `${(i * 47) % 100}%` }}
+              animate={{ y: [0, -40, 0], opacity: [0.2, 0.9, 0.2] }}
+              transition={{ duration: 6 + (i % 5), repeat: Infinity, ease: "easeInOut", delay: i * 0.4 }}
+            />
+          ))}
+          <div className="absolute inset-0 bg-gradient-to-b from-background/40 via-background/60 to-background" />
         </div>
         <div className="container-page grid gap-12 pb-12 pt-20 md:pt-28">
           <div className="max-w-3xl">

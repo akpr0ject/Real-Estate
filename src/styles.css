@@ -195,3 +195,22 @@
 @utility animate-float {
   animation: float-slow 6s ease-in-out infinite;
 }
+
+@keyframes hero-bg-shift {
+  0%, 100% {
+    background-position: 0% 50%, 100% 50%, 50% 0%;
+  }
+  50% {
+    background-position: 100% 50%, 0% 50%, 50% 100%;
+  }
+}
+
+.hero-anim-bg {
+  background-color: oklch(0.16 0.005 60);
+  background-image:
+    radial-gradient(at 20% 30%, oklch(0.72 0.18 42 / 0.35) 0px, transparent 50%),
+    radial-gradient(at 80% 20%, oklch(0.55 0.15 30 / 0.30) 0px, transparent 50%),
+    radial-gradient(at 50% 80%, oklch(0.45 0.12 50 / 0.30) 0px, transparent 50%);
+  background-size: 200% 200%, 200% 200%, 200% 200%;
+  animation: hero-bg-shift 20s ease-in-out infinite;
+}
