@@ -61,6 +61,9 @@ export function SiteHeader() {
           <Button variant="ghost" size="icon" className="hidden md:inline-flex">
             <Bell className="size-4" />
           </Button>
+          <div className="hidden md:inline-flex">
+            <ThemeToggle />
+          </div>
           <Link to="/login">
             <Button variant="ghost" size="sm" className="hidden md:inline-flex">
               <User className="size-4" /> Sign in
