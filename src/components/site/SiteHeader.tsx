@@ -2,6 +2,7 @@ import { Link, useRouterState } from "@tanstack/react-router";
 import { Menu, Search, Bell, Heart, User } from "lucide-react";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
+import { ThemeToggle } from "@/components/ui/ThemeToggle";
 
 const NAV = [
   { to: "/buy", label: "Buy" },
@@ -60,6 +61,9 @@ export function SiteHeader() {
           <Button variant="ghost" size="icon" className="hidden md:inline-flex">
             <Bell className="size-4" />
           </Button>
+          <div className="hidden md:inline-flex">
+            <ThemeToggle />
+          </div>
           <Link to="/login">
             <Button variant="ghost" size="sm" className="hidden md:inline-flex">
               <User className="size-4" /> Sign in
