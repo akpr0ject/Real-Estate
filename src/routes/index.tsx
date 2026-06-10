@@ -32,49 +32,31 @@ function HomePage() {
       {/* HERO */}
       <section className="relative overflow-hidden">
         <div className="absolute inset-0 -z-10 overflow-hidden">
-          {/* Animated gradient mesh background */}
-          <div className="absolute inset-0 hero-anim-bg" />
-          {/* Drifting orbs */}
-          <motion.div
-            aria-hidden
-            className="absolute -top-32 -left-20 size-[42rem] rounded-full bg-ember/25 blur-3xl"
-            animate={{ x: [0, 80, -40, 0], y: [0, 60, -30, 0], scale: [1, 1.15, 0.95, 1] }}
-            transition={{ duration: 18, repeat: Infinity, ease: "easeInOut" }}
+          {/* Cinematic real estate video background */}
+          <video
+            src={heroVideo.url}
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="auto"
+            className="absolute inset-0 h-full w-full object-cover"
           />
+          {/* Dual-mode legibility overlay */}
+          <div className="absolute inset-0 hero-video-overlay" />
+          {/* Ember accent glow */}
           <motion.div
             aria-hidden
-            className="absolute top-1/3 -right-32 size-[36rem] rounded-full bg-amber-500/15 blur-3xl"
-            animate={{ x: [0, -60, 40, 0], y: [0, -40, 50, 0], scale: [1, 0.9, 1.1, 1] }}
+            className="absolute -top-32 -left-20 size-[42rem] rounded-full bg-ember/20 blur-3xl mix-blend-screen"
+            animate={{ x: [0, 80, -40, 0], y: [0, 60, -30, 0] }}
             transition={{ duration: 22, repeat: Infinity, ease: "easeInOut" }}
           />
           <motion.div
             aria-hidden
-            className="absolute bottom-0 left-1/3 size-[30rem] rounded-full bg-orange-600/15 blur-3xl"
-            animate={{ x: [0, 40, -60, 0], y: [0, 30, -20, 0] }}
+            className="absolute bottom-0 right-0 size-[34rem] rounded-full bg-amber-500/15 blur-3xl mix-blend-screen"
+            animate={{ x: [0, -60, 40, 0], y: [0, -40, 50, 0] }}
             transition={{ duration: 26, repeat: Infinity, ease: "easeInOut" }}
           />
-          {/* Subtle grid */}
-          <div
-            className="absolute inset-0 opacity-[0.07]"
-            style={{
-              backgroundImage:
-                "linear-gradient(to right, currentColor 1px, transparent 1px), linear-gradient(to bottom, currentColor 1px, transparent 1px)",
-              backgroundSize: "64px 64px",
-              maskImage: "radial-gradient(ellipse at center, black 40%, transparent 75%)",
-            }}
-          />
-          {/* Floating particles */}
-          {[...Array(14)].map((_, i) => (
-            <motion.span
-              key={i}
-              aria-hidden
-              className="absolute size-1 rounded-full bg-ember/60"
-              style={{ left: `${(i * 73) % 100}%`, top: `${(i * 47) % 100}%` }}
-              animate={{ y: [0, -40, 0], opacity: [0.2, 0.9, 0.2] }}
-              transition={{ duration: 6 + (i % 5), repeat: Infinity, ease: "easeInOut", delay: i * 0.4 }}
-            />
-          ))}
-          <div className="absolute inset-0 bg-gradient-to-b from-background/40 via-background/60 to-background" />
         </div>
         <div className="container-page grid gap-12 pb-12 pt-20 md:pt-28">
           <div className="max-w-3xl">
