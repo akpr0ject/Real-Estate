@@ -270,6 +270,19 @@
     radial-gradient(at 50% 80%, oklch(0.45 0.12 50 / 0.14) 0px, transparent 50%);
 }
 
+/* Hero video overlay — keeps text legible in both themes */
+.hero-video-overlay {
+  background:
+    linear-gradient(180deg, oklch(0.12 0.02 40 / 0.55) 0%, oklch(0.12 0.02 40 / 0.65) 50%, var(--background) 100%),
+    radial-gradient(ellipse at 30% 40%, oklch(0.12 0.02 40 / 0.35), transparent 60%);
+}
+
+.light .hero-video-overlay {
+  background:
+    linear-gradient(180deg, oklch(0.97 0.005 80 / 0.55) 0%, oklch(0.97 0.005 80 / 0.7) 55%, var(--background) 100%),
+    radial-gradient(ellipse at 30% 40%, oklch(1 0 0 / 0.35), transparent 60%);
+}
+
 .light body {
   background-image:
     radial-gradient(1200px 600px at 80% -10%, oklch(0.72 0.18 42 / 0.06), transparent 60%),
