@@ -1,4 +1,5 @@
-import { createFileRoute, useRouterState } from "@tanstack/react-router";
+import { useLocation } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 import { LayoutDashboard, Users, Briefcase, Building2, ShieldCheck, IndianRupee, Megaphone, FileText, BarChart3, Settings } from "lucide-react";
 import { ResponsiveContainer, AreaChart, Area, XAxis, YAxis, Tooltip, CartesianGrid } from "recharts";
 import { DashboardShell, type NavItem } from "@/components/dashboard/DashboardShell";
@@ -19,16 +20,15 @@ const nav: NavItem[] = [
   { to: "/admin/settings", label: "Settings", icon: Settings },
 ];
 
-export const Route = createFileRoute("/admin")({
-  head: () => ({ meta: [{ title: "Super Admin — Estate" }] }),
-  component: AdminWorkspace,
-});
-
 function AdminWorkspace() {
-  const pathname = useRouterState({ select: (s) => s.location.pathname });
+  const pathname = useLocation().pathname;
   const sub = pathname.replace("/admin", "").replace(/^\//, "");
   return (
     <DashboardShell role="Super Admin" user={{ name: "Estate Ops", email: "ops@estate.in", avatar: "https://i.pravatar.cc/100?img=8" }} nav={nav}>
+      <Helmet>
+      <title>Super Admin — Estate</title>
+    </Helmet>
+      
       {sub === "" && <Overview />}
       {sub === "moderation" && <Moderation />}
       {sub === "agents" && <AgentApproval />}
@@ -183,3 +183,6 @@ function Placeholder({ name }: { name: string }) {
     </div>
   );
 }
+
+
+export default AdminWorkspace;

@@ -1,4 +1,5 @@
-import { createFileRoute, Link, useRouterState } from "@tanstack/react-router";
+import { Link, useLocation } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 import { LayoutDashboard, Building2, Users, Calendar, BarChart3, MessageSquare, IndianRupee, Settings, Search, ArrowUpRight, ArrowDownRight, MoreHorizontal, Phone, Mail, ChevronRight } from "lucide-react";
 import { ResponsiveContainer, AreaChart, Area, BarChart, Bar, XAxis, YAxis, Tooltip, CartesianGrid, PieChart, Pie, Cell, Legend } from "recharts";
 import { useState } from "react";
@@ -21,17 +22,16 @@ const nav: NavItem[] = [
 
 const user = { name: "Anika Mehra", email: "anika@estate.in", avatar: "https://i.pravatar.cc/100?img=47" };
 
-export const Route = createFileRoute("/agent")({
-  head: () => ({ meta: [{ title: "Agent Workspace — Estate" }] }),
-  component: AgentWorkspace,
-});
-
 function AgentWorkspace() {
-  const pathname = useRouterState({ select: (s) => s.location.pathname });
+  const pathname = useLocation().pathname;
   const sub = pathname.replace("/agent", "").replace(/^\//, "");
 
   return (
     <DashboardShell role="Agent" user={user} nav={nav}>
+      <Helmet>
+      <title>Agent Workspace — Estate</title>
+    </Helmet>
+      
       {sub === "" && <AgentOverview />}
       {sub === "properties" && <AgentProperties />}
       {sub === "leads" && <AgentLeads />}
@@ -478,3 +478,6 @@ function SettingsView() {
     </div>
   );
 }
+
+
+export default AgentWorkspace;

@@ -1,4 +1,5 @@
-import { createFileRoute, useRouterState } from "@tanstack/react-router";
+import { useLocation } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 import { LayoutDashboard, Users, GitBranch, Calendar, MessageSquare, FileText, BarChart3, Settings } from "lucide-react";
 import { DashboardShell, type NavItem } from "@/components/dashboard/DashboardShell";
 import { StatCard } from "@/components/dashboard/StatCard";
@@ -17,16 +18,15 @@ const nav: NavItem[] = [
   { to: "/crm/settings", label: "Settings", icon: Settings },
 ];
 
-export const Route = createFileRoute("/crm")({
-  head: () => ({ meta: [{ title: "CRM — Estate" }] }),
-  component: CRMWorkspace,
-});
-
 function CRMWorkspace() {
-  const pathname = useRouterState({ select: (s) => s.location.pathname });
+  const pathname = useLocation().pathname;
   const sub = pathname.replace("/crm", "").replace(/^\//, "");
   return (
     <DashboardShell role="CRM" user={{ name: "Anika Mehra", email: "anika@estate.in", avatar: "https://i.pravatar.cc/100?img=47" }} nav={nav}>
+      <Helmet>
+      <title>CRM — Estate</title>
+    </Helmet>
+      
       {sub === "" && <CRMOverview />}
       {sub === "pipeline" && <Pipeline />}
       {sub !== "" && sub !== "pipeline" && <Placeholder name={sub} />}
@@ -97,3 +97,6 @@ function Placeholder({ name }: { name: string }) {
     </div>
   );
 }
+
+
+export default CRMWorkspace;

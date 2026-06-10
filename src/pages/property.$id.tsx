@@ -1,39 +1,15 @@
-import { createFileRoute, Link, notFound } from "@tanstack/react-router";
+import { Link, useParams, Navigate } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 import { BadgeCheck, BedDouble, Calendar, Calculator, Heart, MapPin, Maximize2, MessageCircle, Phone, Play, Share2, ShieldCheck, Star } from "lucide-react";
 import { useState } from "react";
 import { SiteHeader } from "@/components/site/SiteHeader";
 import { SiteFooter } from "@/components/site/SiteFooter";
 import { properties, formatINR } from "@/lib/mock-data";
 
-export const Route = createFileRoute("/property/$id")({
-  loader: ({ params }) => {
-    const p = properties.find((x) => x.id === params.id);
-    if (!p) throw notFound();
-    return { property: p };
-  },
-  head: ({ loaderData }) => ({
-    meta: [
-      { title: `${loaderData?.property.title ?? "Property"} — Estate` },
-      { name: "description", content: loaderData?.property.description ?? "" },
-      { property: "og:title", content: loaderData?.property.title ?? "Property" },
-      { property: "og:description", content: loaderData?.property.description ?? "" },
-      { property: "og:image", content: loaderData?.property.image ?? "" },
-    ],
-  }),
-  notFoundComponent: () => (
-    <div className="grid min-h-screen place-items-center text-center">
-      <div>
-        <div className="font-display text-4xl">Property not found</div>
-        <Link to="/buy" className="mt-4 inline-block text-ember">Back to search →</Link>
-      </div>
-    </div>
-  ),
-  errorComponent: () => <div className="p-10">Couldn't load this property.</div>,
-  component: PropertyDetail,
-});
-
 function PropertyDetail() {
-  const { property: p } = Route.useLoaderData() as { property: typeof properties[number] };
+  const { id } = useParams<{ id: string }>();
+  const p = properties.find((x) => x.id === id);
+  if (!p) return <Navigate to="/buy" replace />;
   const [emi, setEmi] = useState(8.5);
   const [years, setYears] = useState(20);
   const principal = p.price * 0.8;
@@ -191,3 +167,6 @@ function Section({ title, children }: { title: string; children: React.ReactNode
     </section>
   );
 }
+
+
+export default PropertyDetail;

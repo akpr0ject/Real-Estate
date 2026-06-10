@@ -1,22 +1,10 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { Helmet } from "react-helmet-async";
 import { useMemo, useState } from "react";
 import { SlidersHorizontal, Grid3x3, Map } from "lucide-react";
 import { SiteHeader } from "@/components/site/SiteHeader";
 import { SiteFooter } from "@/components/site/SiteFooter";
 import { PropertyCard } from "@/components/property/PropertyCard";
 import { properties, cities } from "@/lib/mock-data";
-
-export const Route = createFileRoute("/buy")({
-  head: () => ({
-    meta: [
-      { title: "Buy Properties — Estate" },
-      { name: "description", content: "Verified homes for sale across India. Apartments, villas, plots and penthouses curated for serious buyers." },
-      { property: "og:title", content: "Buy Properties — Estate" },
-      { property: "og:description", content: "Verified homes for sale across India." },
-    ],
-  }),
-  component: BuyPage,
-});
 
 function BuyPage() {
   return <ListingPage listing="Buy" title="Homes for sale" subtitle="Verified residences across India's most considered addresses." />;
@@ -145,3 +133,6 @@ function Field({ label, children }: { label: string; children: React.ReactNode }
     </div>
   );
 }
+
+
+export default BuyPage;

@@ -1,4 +1,5 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { Link } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 import { motion } from "framer-motion";
 import { ArrowRight, BadgeCheck, Building2, Home, Landmark, MapPin, ShieldCheck, Sparkles, Star, TrendingUp, Users } from "lucide-react";
 import { SiteHeader } from "@/components/site/SiteHeader";
@@ -9,24 +10,19 @@ import { properties, builders, agents } from "@/lib/mock-data";
 import heroVideo from "@/assets/hero-villas.mp4.asset.json";
 
 
-export const Route = createFileRoute("/")({
-  head: () => ({
-    meta: [
-      { title: "Estate — Premium Real Estate Marketplace" },
-      { name: "description", content: "Discover verified homes, offices and new projects across India. Designed for buyers, agents and developers." },
-      { property: "og:title", content: "Estate — Premium Real Estate Marketplace" },
-      { property: "og:description", content: "Discover verified homes, offices and new projects across India." },
-      { property: "og:image", content: "/og-home.jpg" },
-    ],
-  }),
-  component: HomePage,
-});
-
 function HomePage() {
   const featured = properties.filter((p) => p.featured);
 
   return (
     <div>
+      <Helmet>
+      <title>Estate — Premium Real Estate Marketplace</title>
+      <meta name="description" content="Discover verified homes, offices and new projects across India. Designed for buyers, agents and developers." />
+      <meta property="og:title" content="Estate — Premium Real Estate Marketplace" />
+      <meta property="og:description" content="Discover verified homes, offices and new projects across India." />
+      <meta property="og:image" content="/og-home.jpg" />
+    </Helmet>
+      
       <SiteHeader />
 
       {/* HERO */}
@@ -325,3 +321,6 @@ function HomePage() {
     </div>
   );
 }
+
+
+export default HomePage;

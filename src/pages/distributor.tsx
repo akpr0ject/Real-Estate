@@ -1,4 +1,5 @@
-import { createFileRoute, useRouterState } from "@tanstack/react-router";
+import { useLocation } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 import { LayoutDashboard, Users, Map, IndianRupee, Building2, BarChart3, MessageSquare, Settings } from "lucide-react";
 import { ResponsiveContainer, AreaChart, Area, BarChart, Bar, XAxis, YAxis, Tooltip, CartesianGrid } from "recharts";
 import { DashboardShell, type NavItem } from "@/components/dashboard/DashboardShell";
@@ -17,16 +18,15 @@ const nav: NavItem[] = [
   { to: "/distributor/settings", label: "Settings", icon: Settings },
 ];
 
-export const Route = createFileRoute("/distributor")({
-  head: () => ({ meta: [{ title: "Distributor Workspace — Estate" }] }),
-  component: DistributorWorkspace,
-});
-
 function DistributorWorkspace() {
-  const pathname = useRouterState({ select: (s) => s.location.pathname });
+  const pathname = useLocation().pathname;
   const sub = pathname.replace("/distributor", "").replace(/^\//, "");
   return (
     <DashboardShell role="Distributor" user={{ name: "Karan Shetty", email: "karan@coastrealty.in", avatar: "https://i.pravatar.cc/100?img=12" }} nav={nav}>
+      <Helmet>
+      <title>Distributor Workspace — Estate</title>
+    </Helmet>
+      
       {sub === "" && <Overview />}
       {sub === "agents" && <AgentsTable />}
       {sub !== "" && sub !== "agents" && <Placeholder name={sub} />}
@@ -142,3 +142,6 @@ function Placeholder({ name }: { name: string }) {
     </div>
   );
 }
+
+
+export default DistributorWorkspace;

@@ -1,23 +1,18 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { Helmet } from "react-helmet-async";
 import { Star, MapPin, Phone, MessageCircle } from "lucide-react";
 import { SiteHeader } from "@/components/site/SiteHeader";
 import { SiteFooter } from "@/components/site/SiteFooter";
 import { agents } from "@/lib/mock-data";
 
-export const Route = createFileRoute("/agents")({
-  head: () => ({
-    meta: [
-      { title: "Agent Directory — Estate" },
-      { name: "description", content: "Find verified, top-performing real estate agents across India." },
-      { property: "og:title", content: "Agent Directory — Estate" },
-    ],
-  }),
-  component: AgentsPage,
-});
-
 function AgentsPage() {
   return (
     <div>
+      <Helmet>
+      <title>Agent Directory — Estate</title>
+      <meta name="description" content="Find verified, top-performing real estate agents across India." />
+      <meta property="og:title" content="Agent Directory — Estate" />
+    </Helmet>
+      
       <SiteHeader />
       <div className="container-page py-10">
         <div className="text-xs uppercase tracking-widest text-ember">Network</div>
@@ -60,3 +55,6 @@ function AgentsPage() {
     </div>
   );
 }
+
+
+export default AgentsPage;

@@ -1,4 +1,5 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { Link } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 import { useState } from "react";
 import { Building2, User, Briefcase, Shield } from "lucide-react";
 import { SiteHeader } from "@/components/site/SiteHeader";
@@ -10,16 +11,16 @@ const roles = [
   { id: "admin", label: "Super Admin", icon: Shield, desc: "Operate the entire platform.", to: "/admin" },
 ] as const;
 
-export const Route = createFileRoute("/login")({
-  head: () => ({ meta: [{ title: "Sign in — Estate" }, { name: "description", content: "Sign in to your Estate workspace." }] }),
-  component: LoginPage,
-});
-
 function LoginPage() {
   const [role, setRole] = useState<(typeof roles)[number]>(roles[0]);
 
   return (
     <div>
+      <Helmet>
+      <title>Sign in — Estate</title>
+      <meta name="description" content="Sign in to your Estate workspace." />
+    </Helmet>
+      
       <SiteHeader />
       <div className="container-page grid gap-10 py-16 md:grid-cols-[1fr_460px]">
         <div>
@@ -82,3 +83,6 @@ function Field({ label, placeholder, type = "text" }: { label: string; placehold
     </div>
   );
 }
+
+
+export default LoginPage;

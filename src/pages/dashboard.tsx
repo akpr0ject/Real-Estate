@@ -1,4 +1,5 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { Link } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 import { LayoutDashboard, Heart, GitCompareArrows, MessageSquare, Calendar, Bell, Settings, FileSearch, Star } from "lucide-react";
 import { ResponsiveContainer, AreaChart, Area, XAxis, Tooltip, CartesianGrid } from "recharts";
 import { DashboardShell, type NavItem } from "@/components/dashboard/DashboardShell";
@@ -17,11 +18,6 @@ const nav: NavItem[] = [
   { to: "/dashboard/settings", label: "Settings", icon: Settings },
 ];
 
-export const Route = createFileRoute("/dashboard")({
-  head: () => ({ meta: [{ title: "Your dashboard — Estate" }] }),
-  component: UserDashboard,
-});
-
 function UserDashboard() {
   return (
     <DashboardShell
@@ -29,6 +25,10 @@ function UserDashboard() {
       user={{ name: "Aarav Sharma", email: "aarav@example.com", avatar: "https://i.pravatar.cc/100?img=15" }}
       nav={nav}
     >
+      <Helmet>
+      <title>Your dashboard — Estate</title>
+    </Helmet>
+      
       <div className="space-y-8">
         <div>
           <h1 className="font-display text-3xl font-semibold">Welcome back, Aarav.</h1>
@@ -105,3 +105,6 @@ function UserDashboard() {
     </DashboardShell>
   );
 }
+
+
+export default UserDashboard;
