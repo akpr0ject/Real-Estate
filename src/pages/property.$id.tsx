@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useParams, Navigate } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import { BadgeCheck, BedDouble, Calendar, Calculator, Heart, MapPin, Maximize2, MessageCircle, Phone, Play, Share2, ShieldCheck, Star } from "lucide-react";
 import { useState } from "react";
@@ -7,7 +7,9 @@ import { SiteFooter } from "@/components/site/SiteFooter";
 import { properties, formatINR } from "@/lib/mock-data";
 
 function PropertyDetail() {
-  const { property: p } = Route.useLoaderData() as { property: typeof properties[number] };
+  const { id } = useParams<{ id: string }>();
+  const p = properties.find((x) => x.id === id);
+  if (!p) return <Navigate to="/buy" replace />;
   const [emi, setEmi] = useState(8.5);
   const [years, setYears] = useState(20);
   const principal = p.price * 0.8;
