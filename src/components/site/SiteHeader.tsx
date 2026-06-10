@@ -1,4 +1,4 @@
-import { Link, useRouterState } from "@tanstack/react-router";
+import { Link, useLocation } from "react-router-dom";
 import { Menu, Search, Bell, Heart, User } from "lucide-react";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
@@ -14,7 +14,7 @@ const NAV = [
 ];
 
 export function SiteHeader() {
-  const pathname = useRouterState({ select: (s) => s.location.pathname });
+  const pathname = useLocation().pathname;
   const [open, setOpen] = useState(false);
 
   return (

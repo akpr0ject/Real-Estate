@@ -1,4 +1,4 @@
-import { Link } from "@tanstack/react-router";
+import { Link } from "react-router-dom";
 import { Heart, MapPin, BedDouble, Maximize2, BadgeCheck, Eye } from "lucide-react";
 import { motion } from "framer-motion";
 import { type Property, formatINR } from "@/lib/mock-data";

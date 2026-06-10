@@ -1,4 +1,4 @@
-import { Link, useRouterState } from "@tanstack/react-router";
+import { Link, useLocation } from "react-router-dom";
 import type { ReactNode } from "react";
 import { Bell, Search, Plus, type LucideIcon } from "lucide-react";
 
@@ -15,7 +15,7 @@ export function DashboardShell({
   nav: NavItem[];
   children: ReactNode;
 }) {
-  const pathname = useRouterState({ select: (s) => s.location.pathname });
+  const pathname = useLocation().pathname;
 
   return (
     <div className="min-h-screen">
