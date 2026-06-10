@@ -6,6 +6,7 @@ import { SiteFooter } from "@/components/site/SiteFooter";
 import { SearchHero } from "@/components/property/SearchHero";
 import { PropertyCard } from "@/components/property/PropertyCard";
 import { properties, builders, agents } from "@/lib/mock-data";
+import heroVideo from "@/assets/hero-villas.mp4.asset.json";
 
 
 export const Route = createFileRoute("/")({
